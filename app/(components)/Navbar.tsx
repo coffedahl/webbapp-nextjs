@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Navbar() {
     return (
-        <header className="flex items-center justify-between h-20">
+        <header className="flex items-center justify-between h-21">
             <div className="flex items-center">
                 <a href="/"><Image src={'/jdtek-logo.png'} width={250} height={100} alt="JDTEK logo" /></a>
                 <nav>
