@@ -18,7 +18,7 @@ export default function Navbar() {
                 </nav>
             </div>
             <div className="flex items-center mr-10 space-x-8">
-                <button><FontAwesomeIcon icon={faUser} className="h-8" /></button>
+                <a href="/acount"><FontAwesomeIcon icon={faUser} className="h-8" /></a>
                 <button><FontAwesomeIcon icon={faShoppingCart} className="h-8"/></button>
             </div>
         </header>
