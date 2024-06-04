@@ -3,14 +3,18 @@ import { cookies } from "next/headers"
 import LogoutButton from "../(components)/LogoutButton";
 
 async function getUserData(){
+  // Import cookies
   const cookieStore = cookies()
+  // Create supabase client and get userdata
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
   const { data, error } = await supabase.auth.getUser();
   const user = data.user;
+  // Return userdata email
   return user;
 }
 
 export default async function Acount(){
+  // get userdata
   const user = await getUserData();
 
   return (
