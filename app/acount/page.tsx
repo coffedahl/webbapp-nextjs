@@ -1,5 +1,6 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { cookies } from "next/headers"
+import LogoutButton from "../(components)/LogoutButton";
 
 async function getUserData(){
   const cookieStore = cookies()
@@ -13,10 +14,13 @@ export default async function Acount(){
   const user = await getUserData();
 
   return (
-    <article className="flex justify-center p-40">
-      <p className="text-2xl">
-        Logged in user: <b>{user?.email}</b>
-      </p>
-    </article>
+    <div className="flex flex-col justify-center items-center">
+      <article className="flex justify-center p-40">
+        <p className="text-2xl">
+          Logged in user: <b>{user?.email}</b>
+        </p>
+      </article>
+      <LogoutButton />
+    </div>
   );
 }
