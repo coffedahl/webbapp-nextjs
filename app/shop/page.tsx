@@ -1,17 +1,30 @@
+import { cookies } from "next/headers";
 import ProductCard from "./(components)/ProductCard";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Database } from "@/types/supabase";
 
 /**
  * Fetches the product data from the api and passes is as a array of products
  * @returns Array of Products
  */
 async function getProductData() {
-  // Fetch fresh data from api
-  const res = await fetch(process.env.LOCAL_URL + "/api/products", {
-    cache: "no-store",
-  });
-  // Parse and return data
-  const data: Array<Product> = await res.json()
-  return data
+  // Load cookies and create database connection
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore
+  })
+  // Get products from the database
+  let {data, error} = await supabase
+    .from('Products')
+    .select('*')
+    .returns<Array<Product>>()
+
+  // Check if data exsist or return
+  if(!data)
+    throw error
+  else
+    return data;
+  
 }
 
 export default async function Shop() {
