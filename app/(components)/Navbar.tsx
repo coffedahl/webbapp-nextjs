@@ -1,7 +1,9 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import CartButton from "./CartButton";
+import CartModal from "./CartModal";
 
 export default function Navbar() {
     return (
@@ -19,7 +21,7 @@ export default function Navbar() {
             </div>
             <div className="flex items-center mr-10 space-x-8">
                 <a href="/acount"><FontAwesomeIcon icon={faUser} className="h-8" /></a>
-                <button><FontAwesomeIcon icon={faShoppingCart} className="h-8"/></button>
+                <CartButton><CartModal/></CartButton>
             </div>
         </header>
     )
